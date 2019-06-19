@@ -2,7 +2,7 @@ package by.company.pizza;
 
 import java.util.ArrayList;
 
-class PizzaOrdering implements Ingredient  {
+class PizzaOrdering implements Ingredient {
     private int orderNumber;
     private int clientIsNumber;
     private String pizzaName;
@@ -47,9 +47,16 @@ class PizzaOrdering implements Ingredient  {
     public void setTypePizza(String typePizza) {
         this.typePizza = typePizza;
     }
+    public PizzaIngredients getIngridient(int ingredientNumberInArray)throws ArrayIndexOutOfBoundsException {
+        if (ingredientNumberInArray > ingredientList.size()) {
+            return (PizzaIngredients) ingredientList.get( ingredientNumberInArray );
+        } else {
+            throw new ArrayIndexOutOfBoundsException( "Несуществоет такого индекса эелемента" );
+        }
+    }
 
     @Override
-    public void deleteIngredientFromTheList(PizzaIngredients ingredients){
+    public void deleteIngredientFromTheList(PizzaIngredients ingredients) throws IllegalArgumentException{
         if(ingredientList.contains( ingredients )){
             for (int i = 0; i <ingredientList.size() ; i++) {
                 if(ingredientList.get( i ) == ingredients){
@@ -78,14 +85,31 @@ class PizzaOrdering implements Ingredient  {
     }
 
     @Override
-    public void addIngredient(PizzaIngredients ingredients) {
-        if(ingredientList.size()>5){
-            throw new IllegalArgumentException("Пицца заполнена");
+    public void addIngredient(PizzaIngredients ingredients) throws IllegalArgumentException {
+        if (ingredientList.size() > 5) {
+            throw new IllegalArgumentException( "Пицца заполнена" );
         }
-        if(!ingredientList.contains( ingredients )) {
+        if (!ingredientList.contains( ingredients )) {
             ingredientList.add( ingredients );
-        }else {
-            throw new IllegalArgumentException( "Пицца уже содержит данный ингридиетн: " + ingredients + " Добавте другой ингридиент.");
+        } else {
+            throw new IllegalArgumentException( "Пицца уже содержит данный ингридиетн: " + ingredients + "\nДобавте другой ингридиент." );
+        }
+    }
+    public float singleIngredientPriceCalculation(String ingridient){
+        return PizzaIngredients.valueOf(ingridient.toUpperCase().trim()).getIngredientPrice();
+    }
+
+    public float calculatesThePriceOfPizza() {
+        float sumOfAllIngredients =0.0f;
+        for (int i = 0; i <ingredientList.size() ; i++) {
+            sumOfAllIngredients += PizzaIngredients.valueOf(ingredientList.get( i ).toString()).getIngredientPrice();
+        }
+        return Math.round( sumOfAllIngredients*100.0f )/100.0f;
+    }
+    @Override
+    public void displayAddedIngredients(){
+        for (int i=0,j=1;i<ingredientList.size();i++,j++) {
+            System.out.println(j+". "+ingredientList.get( i ).toString());
         }
     }
 }
