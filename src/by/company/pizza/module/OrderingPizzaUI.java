@@ -13,10 +13,10 @@ public class OrderingPizzaUI {
         this.scanner = new Scanner( System.in );
     }
 
-//    private void printStartMenu(){
-//        System.out.println("");
-//        System.out.println();
-//    }
+    private void printStartMenu(){
+        System.out.println("1.Закзать пиццу");
+        System.out.println("2.Заказать ещё одну пиццу");
+    }
 
     private void printOrderMenu() {
         System.out.println( "******************************************************" );
@@ -45,34 +45,37 @@ public class OrderingPizzaUI {
         System.out.println( "---************************************************---" );
     }
 
-//    public  void start(){
-//        if (this.scanner != null) {
-//            int keyboardInput = 0;
-//            printOrderMenu();
-//            do {
-//                try{
-//                    System.out.print( "Ввыберите пункт меню: " );
-//                    keyboardInput = this.scanner.nextInt();
-//                    switch (keyboardInput) {
-//                        case 1:
-//                            addNamePizza();
-//                            printOrderMenu();
-//                            break;
-//                        case 2:
-//                            addPizzaNumber();
-//                            printOrderMenu();
-//                            break;
-//                        default:
-//                            throw new IllegalArgumentException( "Вы ввели неверное значение меню. Если хотите выйти введите 6.");
-//                    }
-//                }catch (IllegalArgumentException ex){
-//                    System.out.println(ex.getMessage());
-//                }
-//            } while (keyboardInput != 7);
-//        }
-//    }
+    public void start(){
+        if (this.scanner != null) {
+            int keyboardInput = 0;
+            printStartMenu();
+            do {
+                try{
+                    System.out.print( "Ввыберите пункт меню: " );
+                    keyboardInput = this.scanner.nextInt();
+                    switch (keyboardInput) {
+                        case 1:
+                            runOrderMenu();
+                            printStartMenu();
+                            break;
+                        case 2:
+                            new OrderingPizzaUI().runOrderMenu();
+                            printStartMenu();
+                            break;
+                        case 3:
+                            System.exit( -1 );
+                            break;
+                        default:
+                            throw new IllegalArgumentException( "Вы ввели неверное значение меню. Если хотите выйти введите 3.");
+                    }
+                }catch (IllegalArgumentException ex){
+                    System.out.println(ex.getMessage());
+                }
+            } while (keyboardInput < 3 && keyboardInput>0);
+        }
+    }
 
-    public void runOrderMenu() {
+    private void runOrderMenu() {
         if (this.scanner != null) {
             int keyboardInput = 0;
             printOrderMenu();
@@ -110,9 +113,6 @@ public class OrderingPizzaUI {
                         printOrderMenu();
                         break;
                     case 7:
-                       // OrderingPizzaUI newOrder = new OrderingPizzaUI();
-                       // newOrder.runOrderMenu();
-                        System.exit( -1 );
                         break;
                     default:
                         throw new IllegalArgumentException( "Вы ввели неверное значение меню. Если хотите выйти введите 6.");
@@ -120,7 +120,7 @@ public class OrderingPizzaUI {
                 }catch (IllegalArgumentException ex){
                     System.out.println(ex.getMessage());
                 }
-            } while (keyboardInput != 7);
+            } while (keyboardInput < 7);
         }
     }
 
