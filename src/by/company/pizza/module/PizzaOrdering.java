@@ -1,4 +1,4 @@
-package by.company.pizza;
+package by.company.pizza.module;
 
 import java.util.ArrayList;
 
@@ -7,11 +7,11 @@ class PizzaOrdering implements Ingredient {
     private int clientIsNumber;
     private String pizzaName;
     private int numberOfPizzas;
-    private String typePizza;
+    private PizzaIngredients typePizza;
     private ArrayList<Object> ingredientList = new ArrayList<>(  );
     private ArrayList<Object> itemsPizza = new ArrayList<>(  );
 
-    public PizzaOrdering() {
+    PizzaOrdering() {
         this.orderNumber = (int) (Math.random()*(10000-99999))+100000;
         this.clientIsNumber = (int) (Math.random()*(1000-9999))+10000;
     }
@@ -40,18 +40,23 @@ class PizzaOrdering implements Ingredient {
         this.numberOfPizzas = numberOfPizzas;
     }
 
-    public String getTypePizza() {
+    public PizzaIngredients getTypePizza() {
         return typePizza;
     }
 
-    public void setTypePizza(String typePizza) {
-        this.typePizza = typePizza;
+    public void setTypePizza(PizzaIngredients typePizza) throws IllegalArgumentException {
+        if(typePizza == PizzaIngredients.BASE || typePizza ==PizzaIngredients.CALSONE) {
+            this.typePizza = typePizza;
+        }else {
+            throw new IllegalArgumentException( "Вы должны выбрать основание пиццы." );
+        }
     }
+
     public PizzaIngredients getIngridient(int ingredientNumberInArray)throws ArrayIndexOutOfBoundsException {
-        if (ingredientNumberInArray > ingredientList.size()) {
+        if (ingredientNumberInArray < ingredientList.size()) {
             return (PizzaIngredients) ingredientList.get( ingredientNumberInArray );
         } else {
-            throw new ArrayIndexOutOfBoundsException( "Несуществоет такого индекса эелемента" );
+            throw new ArrayIndexOutOfBoundsException( "Несуществоет ингридиента под таким номером" );
         }
     }
 
@@ -86,8 +91,8 @@ class PizzaOrdering implements Ingredient {
 
     @Override
     public void addIngredient(PizzaIngredients ingredients) throws IllegalArgumentException {
-        if (ingredientList.size() > 5) {
-            throw new IllegalArgumentException( "Пицца заполнена" );
+        if (ingredientList.size() > 3) {
+            throw new IllegalArgumentException( "Пицца заполнена. Введите 10 для выхода на главное меню." );
         }
         if (!ingredientList.contains( ingredients )) {
             ingredientList.add( ingredients );
@@ -95,6 +100,7 @@ class PizzaOrdering implements Ingredient {
             throw new IllegalArgumentException( "Пицца уже содержит данный ингридиетн: " + ingredients + "\nДобавте другой ингридиент." );
         }
     }
+
     public float singleIngredientPriceCalculation(String ingridient){
         return PizzaIngredients.valueOf(ingridient.toUpperCase().trim()).getIngredientPrice();
     }
