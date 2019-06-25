@@ -5,8 +5,8 @@ class OrderReceipt {
 
     public void createReceiptForTheOrder(){
         System.out.println( "\n********************************" );
-        System.out.println( "Заказ: " + pizzaOrdering.getOrderNumber() );
-        System.out.println( "Клиент: " + pizzaOrdering.getClientIsNumber() );
+        System.out.println( "Заказ: " + pizzaOrdering.getOrderId() );
+        System.out.println( "Клиент: " + pizzaOrdering.getClientId() );
         creatingPizzaDetails();
         System.out.println("Общая сумма: "+ "\t\t\t\t" + totalAmountCalculation() + " €");
         System.out.println( "********************************\n" );

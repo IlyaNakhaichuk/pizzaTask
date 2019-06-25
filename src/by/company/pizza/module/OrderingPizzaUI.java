@@ -9,8 +9,8 @@ public class OrderingPizzaUI {
     private final Scanner scanner;
     private OrderReceipt orderReceipt = new OrderReceipt();
 
-    public OrderingPizzaUI() {
-        this.scanner = new Scanner( System.in );
+    public OrderingPizzaUI(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     private void printStartMenu(){
@@ -59,7 +59,7 @@ public class OrderingPizzaUI {
                             printStartMenu();
                             break;
                         case 2:
-                            new OrderingPizzaUI().runOrderMenu();
+                            new OrderingPizzaUI(new Scanner( System.in )).runOrderMenu();
                             printStartMenu();
                             break;
                         case 3:

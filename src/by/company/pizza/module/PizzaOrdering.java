@@ -3,8 +3,8 @@ package by.company.pizza.module;
 import java.util.ArrayList;
 
 class PizzaOrdering implements Ingredient {
-    private int orderNumber;
-    private int clientIsNumber;
+    private int orderId;
+    private int clientId;
     private String pizzaName;
     private int numberOfPizzas;
     private PizzaIngredients typePizza;
@@ -12,20 +12,20 @@ class PizzaOrdering implements Ingredient {
     private ArrayList<Object> itemsPizza = new ArrayList<>(  );
 
     PizzaOrdering() {
-        this.orderNumber = (int) (Math.random()*(10000-99999))+100000;
-        this.clientIsNumber = (int) (Math.random()*(1000-9999))+10000;
+        this.orderId = (int) (Math.random()*(10000-99999))+100000;
+        this.clientId = (int) (Math.random()*(1000-9999))+10000;
     }
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public int getClientIsNumber() {
-        return clientIsNumber;
+    public int getClientId() {
+        return clientId;
     }
 
     public void setPizzaName(String pizzaName) {
-        this.pizzaName = (pizzaName.length()>=4 && pizzaName.length()<=20) ? pizzaName : getClientIsNumber()+"_"+ pizzaName ;
+        this.pizzaName = (pizzaName.length()>=4 && pizzaName.length()<=20) ? pizzaName : getClientId()+"_"+ pizzaName ;
     }
 
     public String getPizzaName() {
@@ -86,7 +86,7 @@ class PizzaOrdering implements Ingredient {
 
     public String displaysPizzaAttributes(){
         StringBuilder attributeString = new StringBuilder(  );
-        return attributeString.append( getOrderNumber() ).append( ":" ).append( getClientIsNumber() ).append( ":" ).append( getPizzaName() ).append( ":" ).append( getNumberOfPizzas() ).toString();
+        return attributeString.append( getOrderId() ).append( ":" ).append( getClientId() ).append( ":" ).append( getPizzaName() ).append( ":" ).append( getNumberOfPizzas() ).toString();
     }
 
     @Override
