@@ -1,4 +1,4 @@
-package by.company.pizza.module;
+package by.company.pizza.old.version;
 
 class OrderReceipt {
     PizzaOrdering pizzaOrdering = new PizzaOrdering();
@@ -8,6 +8,7 @@ class OrderReceipt {
         System.out.println( "Заказ: " + pizzaOrdering.getOrderId() );
         System.out.println( "Клиент: " + pizzaOrdering.getClientId() );
         creatingPizzaDetails();
+
         System.out.println("Общая сумма: "+ "\t\t\t\t" + totalAmountCalculation() + " €");
         System.out.println( "********************************\n" );
     }

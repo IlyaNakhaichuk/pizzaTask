@@ -1,4 +1,4 @@
-package by.company.pizza.module;
+package by.company.pizza.old.version;
 
 public interface Ingredient {
     void addIngredient(PizzaIngredients ingredients);

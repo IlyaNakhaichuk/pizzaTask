@@ -1,4 +1,4 @@
-package by.company.pizza.module;
+package by.company.pizza.old.version;
 
 import java.util.ArrayList;
 
@@ -107,15 +107,16 @@ class PizzaOrdering implements Ingredient {
 
     public float calculatesThePriceOfPizza() {
         float sumOfAllIngredients =0.0f;
-        for (int i = 0; i <ingredientList.size() ; i++) {
-            sumOfAllIngredients += PizzaIngredients.valueOf(ingredientList.get( i ).toString()).getIngredientPrice();
+        for (Object ingr: ingredientList) {
+            sumOfAllIngredients += PizzaIngredients.valueOf(ingr.toString()).getIngredientPrice();
         }
-        return Math.round( sumOfAllIngredients*100.0f )/100.0f;
+        return Math.round(( sumOfAllIngredients*100.0f )/100.0f);
     }
+
     @Override
     public void displayAddedIngredients(){
-        for (int i=0,j=1;i<ingredientList.size();i++,j++) {
-            System.out.println(j+". "+ingredientList.get( i ).toString());
+        for (int i=0;i<ingredientList.size();i++) {
+            System.out.println((i+1) +". "+ingredientList.get( i ).toString());
         }
     }
 }

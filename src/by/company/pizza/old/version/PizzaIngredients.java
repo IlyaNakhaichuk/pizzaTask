@@ -1,4 +1,4 @@
-package by.company.pizza.module;
+package by.company.pizza.old.version;
 
 public enum PizzaIngredients {
     TOMATO_PASTE(1.0f), CHEESE(1.0f), SALAMI(1.5f), BACON(1.2f), GARLIC(0.3f),

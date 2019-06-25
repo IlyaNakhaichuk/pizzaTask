@@ -1,6 +1,6 @@
 package by.company.pizza;
 
-import by.company.pizza.module.OrderingPizzaUI;
+import by.company.pizza.old.version.OrderingPizzaUI;
 
 import java.util.Scanner;
 
